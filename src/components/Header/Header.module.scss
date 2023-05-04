@@ -1,0 +1,58 @@
+.root {
+  background-color: #fff;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 30px;
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  background: linear-gradient(to bottom, #1570ef, #fce38a);
+  color: #fff;
+  font-weight: 700;
+  line-height: 35px;
+  text-transform: uppercase;
+  letter-spacing: 0.15px;
+  border-radius: 5px;
+  padding: 0 10px;
+  text-decoration: none;
+  margin-right: 10px;
+
+  &:hover {
+    background: linear-gradient(to bottom, #fce38a, #1570ef);
+  }
+}
+.user_auth {
+  display: flex;
+  align-items: center;
+  background-color: #4361ee;
+  color: #fff;
+  border-radius: 5px;
+  padding: 3px 10px;
+  font-size: 15px;
+}
+
+.user_avatar {
+  margin-right: 10px;
+  height: 31px;
+  width: 31px;
+  border-radius: 50px;
+}
+
+.buttons_container {
+  display: flex;
+}
+
+.buttons {
+  button {
+    margin-left: 10px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}

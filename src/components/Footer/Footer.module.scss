@@ -1,0 +1,39 @@
+.root {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #ece9e9;
+  padding-top: 25px;
+  margin: 60px 0px;
+}
+
+.left_side {
+  h5 {
+    font-weight: 600;
+    font-size: 16px;
+    color: #6d6d6d;
+    margin: 0;
+  }
+  p {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #959595;
+    line-height: 24px;
+  }
+}
+
+.right_side {
+  a {
+    margin-left: 25px;
+    fill: #959595;
+    text-decoration: none;
+  }
+  svg {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    &:hover {
+      fill: #2e90fa;
+    }
+  }
+}

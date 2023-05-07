@@ -1,11 +1,16 @@
 import { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { AnyAction, AsyncThunkAction } from '@reduxjs/toolkit'
+
 import { Container } from '@mui/material'
-import { APIAuthResponseType, APIPostsResponseType } from './API'
+
 import { useAppDispatch } from './redux/store'
-import { fetchAuthMe } from './redux/slices/authSlice'
-import { fetchPostsByDate } from './redux/slices/postsSlice'
+
+import { fetchAuthMe } from './redux/slices/auth/authAsyncActions'
+import { fetchPostsByDate } from './redux/slices/posts/postsAsyncActions'
+
+import { APIAuthResponseType, APIPostsResponseType } from './API/API.types'
+
 import {
   Home,
   FullPost,
@@ -36,7 +41,6 @@ const App = () => {
       fetchPostsByDate() as AsyncThunkAction<APIPostsResponseType[], void, {}> &
         AnyAction
     )
-    // eslint-disable-next-line
   }, [])
 
   return (

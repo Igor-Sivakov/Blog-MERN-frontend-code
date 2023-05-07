@@ -1,12 +1,16 @@
 import React, { FC } from 'react'
+
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
 import Avatar from '@mui/material/Avatar'
 import Skeleton from '@mui/material/Skeleton'
 import Divider from '@mui/material/Divider'
-import { APICommentsResponseType } from '../../API'
+
+import { APICommentsResponseType } from '../../API/API.types'
+
 import { SideBlock } from '..'
+
 import styles from './CommentBlock.module.scss'
 
 type PropsType = {
@@ -39,6 +43,7 @@ export const CommentsBlock: FC<PropsType> = ({
                     <Avatar alt={obj.user.fullName} src={obj.user.avatarUrl} />
                   )}
                 </ListItemAvatar>
+
                 {isLoading ? (
                   <div className={styles.skeleton}>
                     <Skeleton variant='text' height={25} width={120} />
@@ -54,6 +59,7 @@ export const CommentsBlock: FC<PropsType> = ({
                   </div>
                 )}
               </ListItem>
+
               <Divider
                 variant='inset'
                 component='li'
@@ -62,6 +68,7 @@ export const CommentsBlock: FC<PropsType> = ({
             </React.Fragment>
           )
         })}
+
         {children}
       </List>
     </SideBlock>

@@ -1,20 +1,10 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-import { APIAuthResponseType, authAPI } from '../../API'
-import { LoginFormDataType } from '../../pages/Login/Login'
-import { RegisterFormDataType } from '../../pages/Registration/Registration'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+import { fetchAuth, fetchAuthMe, fetchRegister } from './authAsyncActions'
+
+import { APIAuthResponseType } from '../../../API/API.types'
 
 
-export const fetchAuth = createAsyncThunk<APIAuthResponseType, LoginFormDataType>('fetch/fetchAuth', async (params) => {
-  return await authAPI.login(params)
-})
-
-export const fetchRegister = createAsyncThunk<APIAuthResponseType, RegisterFormDataType>('fetch/fetchRegister', async (params) => {
-  return await authAPI.register(params)
-})
-
-export const fetchAuthMe = createAsyncThunk<APIAuthResponseType, void>('fetch/fetchAuthMe', async () => {
-  return await authAPI.authMe()
-})
 
 type InitialAuthStateType = {
   data: APIAuthResponseType | null

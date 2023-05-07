@@ -1,19 +1,24 @@
 import { FC, memo, useEffect, useState } from 'react'
 import { AnyAction, AsyncThunkAction } from '@reduxjs/toolkit'
+
 import { Grid, Paper, Tab, Tabs } from '@mui/material'
-import { APICommentsResponseType, APIPostsResponseType } from '../API'
+
 import { useAppDispatch, useAppSelector } from '../redux/store'
-import {
-  getCommentsSelector,
-  getPostsDataSelector,
-} from '../redux/selectors/selectors'
+
 import {
   fetchComments,
   fetchPostsByDate,
   fetchPostsByViews,
   fetchTags,
-  initValues,
-} from '../redux/slices/postsSlice'
+} from '../redux/slices/posts/postsAsyncActions'
+import { initValues } from '../redux/slices/posts/postsSlice'
+import {
+  getCommentsSelector,
+  getPostsDataSelector,
+} from '../redux/selectors/selectors'
+
+import { APICommentsResponseType, APIPostsResponseType } from '../API/API.types'
+
 import { TagsBlock, Post, CommentsBlock } from '../components'
 
 type PropsType = {
@@ -41,7 +46,6 @@ export const Home: FC<PropsType> = memo(({ isOwner }) => {
       fetchComments() as AsyncThunkAction<APICommentsResponseType[], void, {}> &
         AnyAction
     )
-    // eslint-disable-next-line
   }, [])
 
   const getPostsByDate = async () => {
@@ -82,6 +86,7 @@ export const Home: FC<PropsType> = memo(({ isOwner }) => {
           label='Popular'
         />
       </Tabs>
+
       <Grid container spacing={4}>
         <Grid xs={8} item>
           {(isPostsLoading ? [...Array(5)] : posts.items).map(
@@ -123,6 +128,7 @@ export const Home: FC<PropsType> = memo(({ isOwner }) => {
             }
           )}
         </Grid>
+
         <Grid xs={4} item>
           <TagsBlock items={tags.items} isLoading={isTagsLoading} />
           <CommentsBlock items={comments} isLoading={false} />

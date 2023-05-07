@@ -1,21 +1,27 @@
 import { FC, memo } from 'react'
-import clsx from 'clsx'
 import { Link, useNavigate } from 'react-router-dom'
 import { AsyncThunkAction } from '@reduxjs/toolkit'
 import { AnyAction } from 'redux'
+import clsx from 'clsx'
+
 import { IconButton } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Clear'
-import { PostSkeleton } from './PostSkeleton'
-import { APIAuthResponseType } from '../../API'
+
 import { useAppDispatch, useAppSelector } from '../../redux/store'
+
+import { getIsAuthSelector } from '../../redux/selectors/selectors'
 import {
   addFindByTag,
-  fetchRemovePost,
   getPostsByTag,
-} from '../../redux/slices/postsSlice'
-import { getIsAuthSelector } from '../../redux/selectors/selectors'
+} from '../../redux/slices/posts/postsSlice'
+import { fetchRemovePost } from '../../redux/slices/posts/postsAsyncActions'
+
+import { APIAuthResponseType } from '../../API/API.types'
+
 import { UserInfo } from '../'
+import { PostSkeleton } from './PostSkeleton'
+
 import styles from './Post.module.scss'
 
 type PropsType = {
@@ -79,11 +85,13 @@ export const Post: FC<PropsType> = memo(
                 <EditIcon />
               </IconButton>
             </Link>
+
             <IconButton onClick={onClickRemove} color='secondary'>
               <DeleteIcon />
             </IconButton>
           </div>
         )}
+
         {imageUrl && (
           <img
             className={clsx(styles.image, {
@@ -96,8 +104,10 @@ export const Post: FC<PropsType> = memo(
             alt={title}
           />
         )}
+
         <div className={styles.wrapper}>
           <UserInfo {...author} additionalText={createdAt} />
+
           <div className={styles.indention}>
             <h2
               className={clsx(styles.title, {
@@ -106,6 +116,7 @@ export const Post: FC<PropsType> = memo(
             >
               {isClickable ? <Link to={`/posts/${_id}`}>{title}</Link> : title}
             </h2>
+
             <ul className={styles.tags}>
               {tags?.map((name, index) => (
                 <li key={index}>
@@ -121,7 +132,9 @@ export const Post: FC<PropsType> = memo(
                 </li>
               ))}
             </ul>
+
             {children && <div className={styles.content}>{children}</div>}
+
             <ul className={styles.postDetails}>
               <li>
                 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'>
@@ -129,6 +142,7 @@ export const Post: FC<PropsType> = memo(
                 </svg>
                 <span>{viewsCount}</span>
               </li>
+
               <li>
                 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'>
                   <path d='M256 448c141.4 0 256-93.1 256-208S397.4 32 256 32S0 125.1 0 240c0 45.1 17.7 86.8 47.7 120.9c-1.9 24.5-11.4 46.3-21.4 62.9c-5.5 9.2-11.1 16.6-15.2 21.6c-2.1 2.5-3.7 4.4-4.9 5.7c-.6 .6-1 1.1-1.3 1.4l-.3 .3 0 0 0 0 0 0 0 0c-4.6 4.6-5.9 11.4-3.4 17.4c2.5 6 8.3 9.9 14.8 9.9c28.7 0 57.6-8.9 81.6-19.3c22.9-10 42.4-21.9 54.3-30.6c31.8 11.5 67 17.9 104.1 17.9zM128 208a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm128 0a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm96 32a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z' />

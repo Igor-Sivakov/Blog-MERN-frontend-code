@@ -8,14 +8,19 @@ import {
   useState,
 } from 'react'
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
+
 import SimpleMDE from 'react-simplemde-editor'
 import 'easymde/dist/easymde.min.css'
+
 import TextField from '@mui/material/TextField'
 import Paper from '@mui/material/Paper'
 import Button from '@mui/material/Button'
-import { postsAPI } from '../../API'
+
 import { useAppSelector } from '../../redux/store'
 import { getIsAuthSelector } from '../../redux/selectors/selectors'
+
+import { postsAPI } from '../../API/postsAPI'
+
 import styles from './AddPost.module.scss'
 
 export type FieldsType = {
@@ -141,6 +146,7 @@ export const AddPost: FC = () => {
       >
         Download preview
       </Button>
+
       <input
         ref={inputFileRef}
         type='file'
@@ -164,8 +170,10 @@ export const AddPost: FC = () => {
           />
         </>
       )}
+
       <br />
       <br />
+
       <TextField
         classes={{ root: styles.title }}
         variant='standard'
@@ -188,6 +196,7 @@ export const AddPost: FC = () => {
         onChange={onChange}
         options={options}
       />
+
       <div className={styles.buttons}>
         <Button
           onClick={onSubmit}
@@ -197,6 +206,7 @@ export const AddPost: FC = () => {
         >
           {isEditing ? 'Save' : 'Post'}
         </Button>
+
         <Link to='/'>
           <Button variant='outlined' size='large'>
             Cancel

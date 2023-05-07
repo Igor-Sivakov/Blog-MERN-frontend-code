@@ -1,10 +1,12 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
+
 import { useAppSelector } from '../../redux/store'
 import {
   getFindByTagSelector,
   getPostsByTagSelector,
 } from '../../redux/selectors/selectors'
+
 import styles from './PostsByTag.module.scss'
 
 export const PostsByTag: FC = () => {
@@ -31,6 +33,7 @@ export const PostsByTag: FC = () => {
       </div>
     </Link>
   ))
+
   return (
     <main className={styles.root}>
       <h1>

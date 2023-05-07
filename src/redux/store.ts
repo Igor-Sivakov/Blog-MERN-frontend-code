@@ -1,7 +1,8 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux"
-import { authReducer } from './slices/authSlice'
-import { postsReducer } from "./slices/postsSlice"
+
+import { authReducer } from './slices/auth/authSlice'
+import { postsReducer } from "./slices/posts/postsSlice"
 
 type AppDispatch = typeof store.dispatch
 

@@ -1,6 +1,8 @@
 import { FC } from 'react'
+
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
+
 import styles from './SideBlock.module.scss'
 
 type PropsType = {
@@ -21,6 +23,7 @@ export const SideBlock: FC<PropsType> = ({ title, children }) => {
         <Typography variant='h6' classes={{ root: styles.title }}>
           {title}
         </Typography>
+
         {children}
       </Paper>
     </>

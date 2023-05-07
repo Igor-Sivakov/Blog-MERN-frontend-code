@@ -1,16 +1,21 @@
 import { FC } from 'react'
 import { Navigate } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
 import { AnyAction, AsyncThunkAction } from '@reduxjs/toolkit'
+
+import { useForm } from 'react-hook-form'
+import { useAppDispatch, useAppSelector } from '../../redux/store'
+
 import Typography from '@mui/material/Typography'
 import TextField from '@mui/material/TextField'
 import Paper from '@mui/material/Paper'
 import Button from '@mui/material/Button'
 import Avatar from '@mui/material/Avatar'
-import { APIAuthResponseType } from '../../API'
-import { useAppDispatch, useAppSelector } from '../../redux/store'
+
 import { getIsAuthSelector } from '../../redux/selectors/selectors'
-import { fetchRegister } from '../../redux/slices/authSlice'
+import { fetchRegister } from '../../redux/slices/auth/authAsyncActions'
+
+import { APIAuthResponseType } from '../../API/API.types'
+
 import styles from './Registration.module.scss'
 
 export type RegisterFormDataType = {
@@ -65,9 +70,11 @@ export const Registration: FC = () => {
       <Typography classes={{ root: styles.title }} variant='h5'>
         Create an account
       </Typography>
+
       <div className={styles.avatar}>
         <Avatar sx={{ width: 100, height: 100 }} />
       </div>
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
           className={styles.field}
@@ -78,6 +85,7 @@ export const Registration: FC = () => {
           {...register('fullName', { required: 'Enter your full name.' })}
           fullWidth
         />
+
         <TextField
           className={styles.field}
           label='Email'
@@ -87,6 +95,7 @@ export const Registration: FC = () => {
           {...register('email', { required: 'Enter your mail.' })}
           fullWidth
         />
+
         <TextField
           className={styles.field}
           label='Password'
@@ -104,6 +113,7 @@ export const Registration: FC = () => {
             Min length of password is 6 symbols
           </p>
         )}
+
         <TextField
           className={styles.field}
           label='Avatar link'
@@ -113,6 +123,7 @@ export const Registration: FC = () => {
           {...register('avatarUrl', { required: 'Enter link to your avatar' })}
           fullWidth
         />
+
         <Button
           type='submit'
           disabled={!isValid}

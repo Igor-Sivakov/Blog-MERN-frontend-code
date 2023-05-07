@@ -1,12 +1,20 @@
 import { FC, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
-import { Paper } from '@mui/material'
-import { APIPostsResponseType, postsAPI } from '../../API'
+
+import { useParams } from 'react-router-dom'
 import { useAppSelector } from '../../redux/store'
-import { initValues } from '../../redux/slices/postsSlice'
+
+import { Paper } from '@mui/material'
+
+import { initValues } from '../../redux/slices/posts/postsSlice'
 import { getIsAuthSelector } from '../../redux/selectors/selectors'
+
+import { postsAPI } from '../../API/postsAPI'
+
+import { APIPostsResponseType } from '../../API/API.types'
+
 import { Post, CommentsBlock, AddComment } from '../../components'
+
 import styles from './FullPost.module.scss'
 
 type PropsType = {
@@ -45,7 +53,7 @@ export const FullPost: FC<PropsType> = ({ isOwner }) => {
         imageUrl=''
         commentsCount={0}
         isOwner={isOwner}
-      ></Post>
+      />
     )
   }
 
@@ -75,6 +83,7 @@ export const FullPost: FC<PropsType> = ({ isOwner }) => {
             <ReactMarkdown children={data.text} />
           </Post>
         </Paper>
+
         <CommentsBlock items={data.comments} isLoading={false}>
           <AddComment setData={setData} />
         </CommentsBlock>

@@ -1,13 +1,16 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
+
 import ListItem from '@mui/material/ListItem'
 import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import Skeleton from '@mui/material/Skeleton'
 import ListItemText from '@mui/material/ListItemText'
+
 import { useAppDispatch } from '../redux/store'
-import { addFindByTag, getPostsByTag } from '../redux/slices/postsSlice'
+import { addFindByTag, getPostsByTag } from '../redux/slices/posts/postsSlice'
+
 import { SideBlock } from './'
 
 type PropsType = {
@@ -44,6 +47,7 @@ export const TagsBlock: FC<PropsType> = ({ items, isLoading }) => {
                     />
                   </svg>
                 </ListItemIcon>
+
                 {isLoading ? (
                   <Skeleton width={100} />
                 ) : (

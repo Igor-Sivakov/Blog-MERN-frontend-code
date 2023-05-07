@@ -1,11 +1,16 @@
 import { FC } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
-import { APIAuthResponseType } from '../../API'
+
 import { useAppDispatch, useAppSelector } from '../../redux/store'
-import { logout } from '../../redux/slices/authSlice'
+
+import { logout } from '../../redux/slices/auth/authSlice'
 import { getIsAuthSelector } from '../../redux/selectors/selectors'
+
+import { APIAuthResponseType } from '../../API/API.types'
+
 import styles from './Header.module.scss'
 
 export const Header: FC = () => {
@@ -42,9 +47,11 @@ export const Header: FC = () => {
                   />
                   {auth.fullName}
                 </div>
+
                 <Link to='/add-post'>
                   <Button variant='contained'>Write a post</Button>
                 </Link>
+
                 <Button
                   onClick={onClickLogout}
                   variant='contained'
@@ -58,6 +65,7 @@ export const Header: FC = () => {
                 <Link to='/login'>
                   <Button variant='outlined'>Login</Button>
                 </Link>
+
                 <Link to='/register'>
                   <Button variant='contained'>Create account</Button>
                 </Link>

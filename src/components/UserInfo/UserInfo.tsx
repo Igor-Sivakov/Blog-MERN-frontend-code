@@ -21,6 +21,7 @@ export const UserInfo: FC<PropsType> = ({
         src={avatarUrl || '/noavatar.png'}
         alt={fullName}
       />
+
       <div className={styles.userDetails}>
         <span className={styles.userName}>{fullName}</span>
         <span className={styles.additional}>{data}</span>

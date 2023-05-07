@@ -1,12 +1,19 @@
 import { FC } from 'react'
+
 import { useParams } from 'react-router'
 import { useForm } from 'react-hook-form'
+import { useAppSelector } from '../../redux/store'
+
 import TextField from '@mui/material/TextField'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
-import { APIAuthResponseType, APIPostsResponseType, postsAPI } from '../../API'
-import { useAppSelector } from '../../redux/store'
+
 import { getIsAuthSelector } from '../../redux/selectors/selectors'
+
+import { postsAPI } from '../../API/postsAPI'
+
+import { APIAuthResponseType, APIPostsResponseType } from '../../API/API.types'
+
 import styles from './AddComment.module.scss'
 
 type PropsType = {
@@ -50,6 +57,7 @@ export const AddComment: FC<PropsType> = ({ setData }) => {
   return (
     <div className={styles.root}>
       <Avatar classes={{ root: styles.avatar }} src={avatarUrl} />
+
       <div className={styles.form}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextField
@@ -62,6 +70,7 @@ export const AddComment: FC<PropsType> = ({ setData }) => {
             helperText={errors.text?.message}
             {...register('text', { minLength: 10 })}
           />
+
           {errors.text && (
             <p
               style={{
@@ -74,6 +83,7 @@ export const AddComment: FC<PropsType> = ({ setData }) => {
               comment is 10 symbols.
             </p>
           )}
+
           <Button
             variant='contained'
             disabled={!isValid || auth}

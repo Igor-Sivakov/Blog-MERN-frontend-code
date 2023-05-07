@@ -1,12 +1,13 @@
 import { FC, useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 
+import { emptyValues } from '../../assets/data/empty.data'
+
 import { useParams } from 'react-router-dom'
 import { useAppSelector } from '../../redux/store'
 
 import { Paper } from '@mui/material'
 
-import { initValues } from '../../redux/slices/posts/postsSlice'
 import { getIsAuthSelector } from '../../redux/selectors/selectors'
 
 import { postsAPI } from '../../API/postsAPI'
@@ -22,7 +23,7 @@ type PropsType = {
 }
 
 export const FullPost: FC<PropsType> = ({ isOwner }) => {
-  const [data, setData] = useState<APIPostsResponseType>(initValues)
+  const [data, setData] = useState<APIPostsResponseType>(emptyValues)
   const [isLoading, setIsLoading] = useState(true)
 
   const { id } = useParams()
@@ -48,8 +49,8 @@ export const FullPost: FC<PropsType> = ({ isOwner }) => {
     return (
       <Post
         isLoading={isLoading}
-        {...initValues}
-        author={initValues.user}
+        {...emptyValues}
+        author={emptyValues.user}
         imageUrl=''
         commentsCount={0}
         isOwner={isOwner}

@@ -54,6 +54,9 @@ export const Post: FC<PropsType> = memo(
     author,
     isOwner,
   }) => {
+    const imgURL = `http://localhost:4444/${imageUrl}`
+    // `https://sivakov-blog-mern.herokuapp.com/${imageUrl}`
+
     const userData = useAppSelector(getIsAuthSelector)
 
     const dispatch = useAppDispatch()
@@ -97,7 +100,7 @@ export const Post: FC<PropsType> = memo(
             className={clsx(styles.image, {
               [styles.imageClickable]: isClickable,
             })}
-            src={`http://localhost:4444/${imageUrl}`}
+            src={imgURL}
             onClick={() => {
               if (isClickable) return navigate(`/posts/${_id}`)
             }}

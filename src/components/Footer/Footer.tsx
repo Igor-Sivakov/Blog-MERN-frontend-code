@@ -16,8 +16,10 @@ export const Footer: FC = () => {
         </div>
 
         <div className={styles.right_side}>
-          {socialIcons.map((item) => (
-            <Link to={item.link}>{item.Icon}</Link>
+          {socialIcons.map((item, i) => (
+            <Link key={i} to={item.link}>
+              {item.Icon}
+            </Link>
           ))}
         </div>
       </footer>

@@ -1,5 +1,7 @@
 import { FC } from 'react'
 
+import avatar from '../../assets/img/avatar.jpeg'
+
 import { useParams } from 'react-router'
 import { useForm } from 'react-hook-form'
 import { useAppSelector } from '../../redux/store'
@@ -22,10 +24,9 @@ type PropsType = {
 
 export const AddComment: FC<PropsType> = ({ setData }) => {
   const isAuth: boolean = Boolean(useAppSelector(getIsAuthSelector))
-  const auth: boolean = !window.localStorage.getItem('token') && !isAuth
-  const { _id, avatarUrl } = useAppSelector(
-    getIsAuthSelector
-  ) as APIAuthResponseType
+  const notAuth: boolean = !window.localStorage.getItem('token') && !isAuth
+
+  const authData = useAppSelector(getIsAuthSelector)
 
   const { id } = useParams()
 
@@ -42,10 +43,10 @@ export const AddComment: FC<PropsType> = ({ setData }) => {
   })
 
   const onSubmit = async (values: { text: string }) => {
-    if (!values.text.length) return
+    if (!values.text.length || !authData?._id) return
     const comment = {
       comments: {
-        user: _id,
+        user: authData._id,
         text: values.text,
       },
     }
@@ -56,7 +57,10 @@ export const AddComment: FC<PropsType> = ({ setData }) => {
 
   return (
     <div className={styles.root}>
-      <Avatar classes={{ root: styles.avatar }} src={avatarUrl} />
+      <Avatar
+        classes={{ root: styles.avatar }}
+        src={authData ? authData.avatarUrl : avatar}
+      />
 
       <div className={styles.form}>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -86,7 +90,7 @@ export const AddComment: FC<PropsType> = ({ setData }) => {
 
           <Button
             variant='contained'
-            disabled={!isValid || auth}
+            disabled={!isValid || notAuth}
             type='submit'
             size='medium'
           >

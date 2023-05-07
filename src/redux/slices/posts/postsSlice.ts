@@ -5,24 +5,6 @@ import { fetchComments, fetchPostsByDate, fetchPostsByViews, fetchRemovePost, fe
 import { APICommentsResponseType, APIPostsResponseType } from '../../../API/API.types'
 
 
-export const initValues: APIPostsResponseType = {
-  _id: '',
-  title: '',
-  user: {
-    avatarUrl: '',
-    fullName: '',
-    email: '',
-    _id: '',
-  },
-  createdAt: '',
-  viewsCount: 0,
-  tags: [],
-  comments: [],
-  text: '',
-  updatedAt: '',
-  imageUrl: '',
-}
-
 type initialPostsStateType = {
   posts: {
     items: APIPostsResponseType[],
@@ -84,15 +66,15 @@ const postsSlice = createSlice({
       })
       // get comments
       .addCase(fetchComments.pending, (state) => {
-        state.tags.status = 'loading'
+        state.comments.status = 'loading'
       })
       .addCase(fetchComments.fulfilled, (state, actions: PayloadAction<APICommentsResponseType[]>) => {
         state.comments.items = actions.payload
-        state.tags.status = 'loaded'
+        state.comments.status = 'loaded'
       })
       .addCase(fetchComments.rejected, (state) => {
-        state.tags.items = []
-        state.tags.status = 'error'
+        state.comments.items = []
+        state.comments.status = 'error'
       })
       // remove post
       .addCase(fetchRemovePost.pending, (state, action: PayloadAction<undefined, string, { arg: string }>) => {

@@ -2,7 +2,11 @@ import axios, { InternalAxiosRequestConfig } from 'axios'
 
 
 export const instance = axios.create({
-  baseURL: 'http://localhost:4444/' || 'https://sivakov-blog-mern.herokuapp.com/',
+  baseURL: process.env.REACT_APP_SERVER_URL,
+  headers: {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Credentials': true,
+  }
 })
 
 instance.interceptors.request.use((config: InternalAxiosRequestConfig<any>): InternalAxiosRequestConfig<any> | Promise<InternalAxiosRequestConfig<any>> => {

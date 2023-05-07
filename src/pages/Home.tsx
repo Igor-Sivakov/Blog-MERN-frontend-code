@@ -1,6 +1,8 @@
 import { FC, memo, useEffect, useState } from 'react'
 import { AnyAction, AsyncThunkAction } from '@reduxjs/toolkit'
 
+import { emptyValues } from '../assets/data/empty.data'
+
 import { Grid, Paper, Tab, Tabs } from '@mui/material'
 
 import { useAppDispatch, useAppSelector } from '../redux/store'
@@ -11,7 +13,6 @@ import {
   fetchPostsByViews,
   fetchTags,
 } from '../redux/slices/posts/postsAsyncActions'
-import { initValues } from '../redux/slices/posts/postsSlice'
 import {
   getCommentsSelector,
   getPostsDataSelector,
@@ -95,8 +96,8 @@ export const Home: FC<PropsType> = memo(({ isOwner }) => {
                 <Post
                   key={index}
                   isLoading={isPostsLoading}
-                  {...initValues}
-                  author={initValues.user}
+                  {...emptyValues}
+                  author={emptyValues.user}
                   imageUrl=''
                   commentsCount={0}
                   isOwner={isOwner}

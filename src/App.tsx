@@ -11,6 +11,7 @@ import { fetchPostsByDate } from './redux/slices/posts/postsAsyncActions'
 
 import { APIAuthResponseType, APIPostsResponseType } from './API/API.types'
 
+import { Header, Footer } from './components'
 import {
   Home,
   FullPost,
@@ -19,8 +20,6 @@ import {
   Login,
   PostsByTag,
 } from './pages'
-import { Footer } from './components/Footer/Footer'
-import { Header } from './components/Header/Header'
 
 const App = () => {
   const dispatch = useAppDispatch()
